@@ -1,0 +1,22 @@
+<div class="header-container">
+    <div class="toolset-left">
+        <label for="txt-input"> txt with titles => </label>
+        <input (change)="handleFileInput($event)" type="file" accept=".txt" id="txt-input">
+        <button (click)="submitFile()" class="submit-button"
+                [ngClass]="submitButtonStatus"
+                [disabled]="!selectedFile"
+        >{{submitButtonStatus === LOADING ? 'Loading' : 'Submit'}}</button>
+    </div>
+
+
+    <div class="toolset-right">
+        <input (change)="updateLengthInput($event)" class="default-duration-input" type="number" placeholder="35 sec">
+
+        <button (click)="handleDownloadAll()"
+                [ngClass]="downloadAllButtonStatus"
+                [disabled]="songDataService.songsData.length === 0"
+                class="download-all-button"
+        >Download all</button>
+
+    </div>
+</div>

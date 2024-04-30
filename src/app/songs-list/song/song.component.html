@@ -1,0 +1,25 @@
+<div class="song-form">
+    <button (click)="remove($event)" class="remove-song">X</button>
+    <input type="text" [value]="songData.fetched.title" (change)="updateTitle($event)">
+    <span>{{songData.fetched.duration_string}}</span>
+    <div class="timestamp-input">
+        <input type="text" placeholder="from" name="from" (input)="updateTimestampInput($event)">
+        :
+        <input type="text" placeholder="to" name="to" (input)="updateTimestampInput($event)">
+    </div>
+
+
+    @if (songData.fetched.original_url) {
+        <a [href]="songData.fetched.original_url" target="_blank">Original</a>
+    } @else {
+        <input class="url-input" type="text" (change)="insertOriginalUrl($event)" placeholder="Youtube URL">
+        <button (click)="updateSong($event)"
+                [disabled]="!songData.fetched.original_url && !songData.fetched.title"
+                class="update-button"
+        >Update</button>
+    }
+
+<!--    TODO - add checkbox field in songData, only checked songs will be downloaded-->
+<!--    <input type="checkbox" [checked]="songData.userInput?.checked">-->
+
+</div>

@@ -1,0 +1,38 @@
+<div class="control-block">
+    <button (click)="createEmptySongField($event)">Add</button>
+    <div class="siq-container">
+<!--        <input type="text" class="siq-input author" [(ngModel)]="authorName" placeholder="author name">-->
+        <input type="text" class="siq-input pack" [(ngModel)]="siqName" placeholder="pack name">
+        <button (click)="handleCreateSiq($event)">.siq</button>
+    </div>
+    <button (click)="handleUpdateButton($event)"
+            class="update-button"
+            [ngClass]="updateButtonStatus"
+            [disabled]=" songDataService.songsData.length === 0"
+    >Update all
+    </button>
+</div>
+<section class="list-section">
+    <ul class="song-list-container">
+        @for (song of songDataService.songsData; let index = $index; track index; ) {
+            <li>
+                <p class="index">{{ index + 1 }}</p>
+
+                <app-song
+                        [songData]="song"
+                        (removeSong)="removeSong(index)"
+                ></app-song>
+            </li>
+        }
+    </ul>
+    <div class="downloads-list">
+        @for (message of songDataService.downloadedMessages; let index = $index; track index; ) {
+                <span>{{ message }}</span>
+        }
+    </div>
+</section>
+
+<div class="control-block">
+    <button (click)="createEmptySongField($event)">Add</button>
+    <button (click)="removeAll()">Remove all</button>
+</div>

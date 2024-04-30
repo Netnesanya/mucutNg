@@ -1,0 +1,61 @@
+.header-container {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+    .default-duration-input {
+        width: 90px;
+    }
+
+    .toolset-left {
+        input {
+            width: 50%;
+        }
+    }
+
+    .submit-button {
+
+        &.ready {
+            background-color: #4CAF50;
+        }
+
+        &.loading {
+            background-color: yellow;
+            color: black;
+        }
+
+        &:disabled {
+            color: black;
+            background-color: gray;
+        }
+
+        &.error {
+            background-color: red;
+            color: black;
+        }
+    }
+
+    .download-all-button {
+        &.ready {
+            background-color: #4CAF50;
+        }
+
+        &.loading {
+            background-color: yellow;
+            color: black;
+        }
+
+        &:disabled {
+            color: black;
+            background-color: gray;
+        }
+
+        &.error {
+            background-color: red;
+            color: black;
+        }
+    }
+}

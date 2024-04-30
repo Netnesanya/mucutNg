@@ -1,0 +1,75 @@
+.song-list-container {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 5px;
+
+    li {
+        display: flex;
+        align-items: center;
+        height: 30px;
+
+        .index {
+            width: 10px;
+        }
+    }
+}
+
+.downloads-list {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 5px;
+    color: greenyellow;
+    min-width: 60px;
+    min-height: 15px;
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+.list-section {
+    display: grid;
+    grid-template-columns: 3fr 1.5fr;
+}
+
+.update-button {
+    &.ready {
+        background-color: #4CAF50;
+    }
+
+    &.loading {
+        background-color: yellow;
+        color: black;
+    }
+
+    &:disabled {
+        color: black;
+        background-color: gray;
+    }
+
+    &.error {
+        background-color: red;
+        color: black;
+    }
+}
+
+.control-block {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.siq-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+
+    input {
+        width: 30%;
+    }
+
+    .author {
+        margin-right: 5px;
+    }
+}
