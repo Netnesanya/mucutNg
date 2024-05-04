@@ -20,8 +20,6 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     });
 
-    console.log(authRequest);
-
     return next.handle(authRequest).pipe(
       catchError((err: any) => {
         if (err instanceof HttpErrorResponse) {
