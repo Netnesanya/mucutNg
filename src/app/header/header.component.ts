@@ -36,12 +36,12 @@ export class HeaderComponent implements OnInit {
     }
 
     public handleFileInput(event: Event) {
-        // const element = event.currentTarget as HTMLInputElement;
-        // let fileList: FileList | null = element.files;
-        // if (fileList) {
-        //     this.submitButtonStatus = READY
-        //     this.selectedFile = fileList[0];
-        // }
+        const element = event.currentTarget as HTMLInputElement;
+        let fileList: FileList | null = element.files;
+        if (fileList) {
+            this.submitButtonStatus = READY
+            this.selectedFile = fileList[0];
+        }
     }
 
     public handleDownloadAll(): void {
@@ -78,55 +78,12 @@ export class HeaderComponent implements OnInit {
 
     // Relevant parts of HeaderComponent
     public submitFile() {
-        // const file = this.selectedFile;
-        // if (file) {
-        //     const reader = new FileReader();
-        //
-        //     reader.onload = () => {
-        //         const content = reader.result;
-        //         if (typeof content === 'string') {
-        //             console.log("Sending message:", content);
-        //             this.ws.sendMessage(content);
-        //             this.submitButtonStatus = LOADING;
-        //
-        //             // Listen for messages from the server
-        //             this.ws.getMessages().subscribe({
-        //                 next: (message) => {
-        //                   console.log(message);
-        //                   if (message.includes('Successfully downloaded audio segment')) {
-        //                         this.songDataService.downloadedMessages.push(message.replace('Successfully downloaded audio segment', "downloaded"));
-        //                         return
-        //                     }
-        //
-        //                     const fetchedDataArray: SongDataFetched[] = JSON.parse(message);
-        //
-        //                     const newSongsData: CombinedSongData[] = fetchedDataArray
-        //                         .filter(fetched =>
-        //                             // Check if fetched song does not exist in the current songsData array
-        //                             !this.songDataService.songsData.some(
-        //                                 existingSong => existingSong.fetched.original_url === fetched.original_url
-        //                             )
-        //                         )
-        //                         .map(fetched => ({
-        //                             fetched: fetched,
-        //                             userInput: {} // Initialize with an empty object or copy existing userInput if needed
-        //                         }));
-        //
-        //                     // Add the newSongsData to the existing songsData array
-        //                     this.songDataService.songsData = [...this.songDataService.songsData, ...newSongsData];
-        //                     console.log(this.songDataService.songsData);
-        //                     this.submitButtonStatus = READY;
-        //                 },
-        //                 error: (error) => {
-        //                     console.error('WebSocket error:', error);
-        //                     this.submitButtonStatus = ERROR;
-        //                 }
-        //             });
-        //         }
-        //     };
-        //
-        //     reader.readAsText(file);
-        // }
+        const file = this.selectedFile;
+        if (file) {
+          this.songDataService.handleTxtContent(file).subscribe((status) => {
+            this.submitButtonStatus = status
+          })
+        }
     }
 
 
