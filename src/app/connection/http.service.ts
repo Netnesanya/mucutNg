@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {env} from "../../../mucutNg/src/env/env";
+import {env} from "../../../../mucutNg/src/env/env";
 import {HttpClient} from "@angular/common/http";
-import {CombinedSongData, SongDataFetched} from "./services/song-data.service";
+import {CombinedSongData, SongDataFetched} from "../services/song-data.service";
 
 @Injectable({
     providedIn: 'root'

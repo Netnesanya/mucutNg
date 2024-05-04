@@ -1,6 +1,7 @@
 // src/app/websocket.service.ts
 import { Injectable } from '@angular/core';
 import {Observable, Subject, timer} from 'rxjs';
+import {TOKEN} from "../app.component";
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,19 @@ export class WebSocketService {
   private messageSubject: Subject<string> = new Subject();
 
   public connect(url: string): void {
-    this.socket = new WebSocket(url);
+    if (localStorage.getItem(TOKEN)) {
+      this.socket = new WebSocket(url + `?token=${localStorage.getItem(TOKEN)}`);
+    } else {
+      localStorage.setItem(TOKEN, Math.random().toString(36).substr(2, 9))
+      this.socket = new WebSocket(url + `?token=${localStorage.getItem(TOKEN)}`);
+    }
 
     this.socket.onopen = (event) => {
         console.log('WebSocket Open');
     }
 
     this.socket.onmessage = (event) => {
+      console.log(event);
       this.messageSubject.next(event.data);
     };
 
