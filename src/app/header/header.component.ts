@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from "../connection/http.service";
-import {CombinedSongData, SongDataFetched, SongDataService} from "../services/song-data.service";
+import {SongDataService} from "../services/song-data.service";
 import {NgClass} from "@angular/common";
 import {WebSocketService} from "../connection/websocket.service";
 
@@ -36,6 +36,10 @@ export class HeaderComponent implements OnInit {
     }
 
     public handleFileInput(event: Event) {
+      // this.ws.getMessages().subscribe((message) => {
+      //   console.log(message)
+      // })
+      // this.ws.sendMessage(JSON.stringify({action: 'broadcast', data: 'hello'}))
         const element = event.currentTarget as HTMLInputElement;
         let fileList: FileList | null = element.files;
         if (fileList) {
@@ -75,8 +79,6 @@ export class HeaderComponent implements OnInit {
         // }
     }
 
-
-    // Relevant parts of HeaderComponent
     public submitFile() {
         const file = this.selectedFile;
         if (file) {

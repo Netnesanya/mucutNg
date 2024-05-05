@@ -1,10 +1,4 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest
-} from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {catchError, Observable, throwError} from "rxjs";
 import {TOKEN} from "../app.component";
 
@@ -16,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const authRequest = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: accessToken!
       }
     });
 
@@ -43,4 +37,4 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
 
-};
+}
