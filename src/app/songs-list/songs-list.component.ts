@@ -3,7 +3,7 @@ import {NgClass, NgForOf} from "@angular/common";
 import {SongComponent} from "./song/song.component";
 import {CombinedSongData, SongDataFetched, SongDataService} from "../services/song-data.service";
 import {DISABLED, LOADING, READY} from "../header/header.component";
-import {HttpService} from "../http.service";
+import {HttpService} from "../connection/http.service";
 import {FormsModule} from "@angular/forms";
 
 @Component({
@@ -51,42 +51,43 @@ export class SongsListComponent implements OnInit {
     public handleUpdateButton(event: any): void {
         event.preventDefault()
         if (this.updateButtonStatus === READY) {
-            this.updateButtonStatus = LOADING;
+            // this.updateButtonStatus = LOADING;
+            //
+            // // Map over songsData to extract the fetched part for the update operation
+            // const metadataToUpdate = this.songDataService.songsData.map(data => data.fetched);
 
-            // Map over songsData to extract the fetched part for the update operation
-            const metadataToUpdate = this.songDataService.songsData.map(data => data.fetched);
-
-            this.http.updateMp3MetadataBulk(metadataToUpdate)
-                .subscribe({
-                    next: (data) => {
-                        this.songDataService.songsData = this.songDataService.songsData.map((song, index) => ({
-                            // @ts-ignore
-                            fetched: data[index],
-                            userInput: song.userInput
-                        }));
-                        this.updateButtonStatus = READY;
-                    },
-                    error: (error) => {
-                        console.error(error);
-                        this.updateButtonStatus = READY;
-                    }
-                });
-        }
+        //     this.http.updateMp3MetadataBulk(metadataToUpdate)
+        //         .subscribe({
+        //             next: (data) => {
+        //                 this.songDataService.songsData = this.songDataService.songsData.map((song, index) => ({
+        //                     // @ts-ignore
+        //                     fetched: data[index],
+        //                     userInput: song.userInput
+        //                 }));
+        //                 this.updateButtonStatus = READY;
+        //             },
+        //             error: (error) => {
+        //                 console.error(error);
+        //                 this.updateButtonStatus = READY;
+        //             }
+        //         });
+        // }
+    }
     }
 
     public handleCreateSiq(event: any): void {
-        event.preventDefault();
-        this.http.requestSiqCreation(this.siqName)
-            .subscribe({
-                next: (data) => {
-                    console.log(data);
-                },
-                error: (error) => {
-                    console.error(error);
-                }
-            });
-
+        // event.preventDefault();
+        // this.http.requestSiqCreation(this.siqName)
+        //     .subscribe({
+        //         next: (data) => {
+        //             console.log(data);
+        //         },
+        //         error: (error) => {
+        //             console.error(error);
+        //         }
+        //     });
     }
+
     public removeAll(): void {
         this.songDataService.songsData = [];
     }

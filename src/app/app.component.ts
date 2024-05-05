@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {RouterOutlet} from '@angular/router';
 import {SongsListComponent} from "./songs-list/songs-list.component";
 import {HeaderComponent} from "./header/header.component";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {HttpService} from "./connection/http.service";
 import {WebSocketService} from "./connection/websocket.service";
-import {AuthInterceptor} from "./connection/auth.interceptor";
+import {SongDataService} from "./services/song-data.service";
 
 
 export const TOKEN = 'token'
@@ -15,7 +15,7 @@ export const TOKEN = 'token'
   selector: 'app-root',
   standalone: true,
     imports: [CommonModule, RouterOutlet, SongsListComponent, HeaderComponent, HttpClientModule],
-    providers: [HttpService],
+  providers: [HttpService, WebSocketService, SongDataService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

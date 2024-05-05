@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CombinedSongData, SongDataFetched, SongDataUserInput} from "../../services/song-data.service";
 import {NgClass, NgIf} from "@angular/common";
-import {HttpService} from "../../http.service";
+import {HttpService} from "../../connection/http.service";
 import {DISABLED, LOADING, READY} from "../../header/header.component";
 import {FormsModule} from "@angular/forms";
 

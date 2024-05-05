@@ -10,14 +10,22 @@ export class HttpService {
 
     private readonly apiUrl: string = env.apiUrl;
 
-    private readonly fetchVideoInfoUrl = this.apiUrl + 'fetch-video-info';
+  private readonly fetchVideoInfoUrl = this.apiUrl + 'parse-txt';
     private readonly downloadMp3BulkUrl = this.apiUrl + 'download-mp3-bulk';
 
     constructor(private http: HttpClient) {
     }
 
-    public fetchVideoInfo(txt: FormData) {
-        return this.http.post(this.fetchVideoInfoUrl, txt);
+  public fetchVideoInfo(txt: string): void {
+    this.http.post(this.apiUrl + 'parse-txt', txt, {responseType: "json"})
+      .subscribe({
+        next: () => {
+          console.log('Successfully sent request')
+        },
+        error: (err) => {
+          console.error('Error fetching video info:', err)
+        }
+      });
     }
 
     public downloadMp3Bulk(metadata: CombinedSongData[]) {
